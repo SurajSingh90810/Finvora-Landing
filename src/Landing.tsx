@@ -50,11 +50,14 @@ import {
   Timer,
   Box,
   Eye,
+  Send,
 } from "lucide-react";
 
 // Adjust this path to match your project structure
 import logoImg from "./assets/logo1.png";
 import NavImg from "./assets/logo.png";
+import { BsInstagram, BsYoutube } from "react-icons/bs";
+import { FaFacebook } from "react-icons/fa";
 
 // ═══════════════ UTILITY COMPONENTS ═══════════════
 
@@ -487,6 +490,38 @@ const INCOME_STREAMS = [
   },
 ];
 
+// Social Media Links Config
+const SOCIAL_LINKS = [
+  {
+    name: "Telegram",
+    url: "https://t.me/+vKqESaexwxs1MDFk",
+    icon: <Send size={20} />,
+    color: "#0088cc",
+    desc: "Join our official chat group",
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/finv_ora?stkn=MXNlMWlzaGt3c2I0aA%3D%3D&utm_source=qr",
+    icon: <BsInstagram size={20} />,
+    color: "#e1306c",
+    desc: "Get visual updates & stories",
+  },
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/people/Finvora-Finvora/pfbid0NLCuQW3GZfpmjufjhFeNjqHo7qVLwr2SA8mFUxxxGyBZUUi2gSagjqmTLyCZ4i9Jl/?mibextid=wwXIfr&rdid=afcm2UB8EPHqQ8Zc&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1FCCgCQxiV%2F%3Fmibextid%3DwwXIfr",
+    icon: <FaFacebook size={20} />,
+    color: "#1877f2",
+    desc: "Connect with our global page",
+  },
+  {
+    name: "YouTube",
+    url: "https://www.youtube.com/@FINVORA-v6g",
+    icon: <BsYoutube size={20} />,
+    color: "#ff0000",
+    desc: "Watch guides & explainers",
+  },
+];
+
 // ═══════════════ MAIN LANDING COMPONENT ═══════════════
 
 const Landing: React.FC = () => {
@@ -578,7 +613,6 @@ const Landing: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2 sm:gap-3">
-              {/* REMOVED 'hidden sm:flex', ADDED responsive padding and text sizing for mobile */}
               <button
                 className="brutal-btn flex items-center gap-1 sm:gap-2 bg-fuchsia-500 text-[#0f1115] font-bold text-[10px] sm:text-xs uppercase tracking-widest px-3 py-2.5 sm:px-5 sm:py-3 rounded-xl border-2 border-fuchsia-300"
                 style={{ "--btn-shadow": "#a21caf" } as React.CSSProperties}
@@ -613,6 +647,23 @@ const Landing: React.FC = () => {
                   {link.label}
                 </button>
               ))}
+              <div className="pt-4 border-t border-zinc-800/60 flex items-center justify-center gap-4">
+                {SOCIAL_LINKS.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-[#1a1d24] border-2 border-zinc-800 rounded-xl transition-all hover:-translate-y-1"
+                    style={{
+                      borderColor: `${social.color}40`,
+                      color: social.color,
+                    }}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
             </div>
           )}
         </nav>
@@ -1517,7 +1568,7 @@ const Landing: React.FC = () => {
                   shape={feature.shape as any}
                   delay={i * 100}
                 >
-                  <div className="flex flex-col h-full relative z-10 items-center text-center md:items-start md:text-left">
+                  <div className="flex flex-col h-full relative z-10 items-center text-center md:items-start md:text-left w-full">
                     <div className="mb-6 flex justify-center md:justify-start w-full">
                       <IconBox
                         icon={feature.icon}
@@ -1746,7 +1797,7 @@ const Landing: React.FC = () => {
                   shape={stream.shape}
                   delay={i * 120}
                 >
-                  <div className="flex flex-col h-full relative z-10 items-center text-center md:items-start md:text-left">
+                  <div className="flex flex-col h-full relative z-10 items-center text-center md:items-start md:text-left w-full">
                     <div className="flex flex-col md:flex-row items-center md:items-start gap-4 mb-5 w-full">
                       <div className="flex justify-center md:justify-start w-full md:w-auto">
                         <IconBox
@@ -2063,9 +2114,10 @@ const Landing: React.FC = () => {
         </section>
 
         {/* ═══════════════ FOOTER ═══════════════ */}
-        <footer className="border-t-2 border-zinc-800 pt-10 px-4 relative z-10">
-          <div className="max-w-[85rem] mx-auto flex flex-col items-center md:items-start">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-12 w-full">
+        <footer className="border-t-2 border-zinc-800 pt-16 pb-12 px-4 relative z-10 bg-[#090a0f]">
+          <div className="max-w-[85rem] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-12 w-full">
+              {/* Brand and Description */}
               <div className="md:col-span-2 flex flex-col items-center md:items-start text-center md:text-left w-full">
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-3 mb-6">
                   <img
@@ -2085,11 +2137,12 @@ const Landing: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col items-center md:items-start text-center md:text-left w-full mt-4 md:mt-0">
-                <h4 className="text-xs font-bold text-fuchsia-400 uppercase tracking-[0.2em] mb-5 w-full">
+              {/* Protocol Hub Nav */}
+              <div className="flex flex-col items-center md:items-start text-center md:text-left w-full">
+                <h4 className="text-xs font-bold text-fuchsia-400 uppercase tracking-[0.2em] mb-6 w-full">
                   Protocol Hub
                 </h4>
-                <ul className="space-y-3 flex flex-col items-center md:items-start w-full">
+                <ul className="space-y-3.5 flex flex-col items-center md:items-start w-full">
                   {navLinks.map((link) => (
                     <li
                       key={link.id}
@@ -2109,6 +2162,55 @@ const Landing: React.FC = () => {
                   ))}
                 </ul>
               </div>
+
+              {/* Social Channels / Community Section */}
+              <div className="flex flex-col items-center md:items-start text-center md:text-left w-full">
+                <h4 className="text-xs font-bold text-cyan-400 uppercase tracking-[0.2em] mb-6 w-full">
+                  Connect Community
+                </h4>
+                <p className="text-xs text-zinc-500 mb-5 leading-relaxed font-light">
+                  Join our verified media platforms to track on-chain network
+                  updates, announcements, and guides.
+                </p>
+                <div className="grid grid-cols-2 gap-3 w-full">
+                  {SOCIAL_LINKS.map((social, i) => (
+                    <a
+                      key={i}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2.5 p-2.5 bg-[#12141a] border border-zinc-800 rounded-xl hover:-translate-y-1 transition-all duration-300 group"
+                      style={
+                        {
+                          "--hover-color": social.color,
+                        } as React.CSSProperties
+                      }
+                    >
+                      <span
+                        className="p-1.5 rounded-lg bg-[#1a1d24] group-hover:scale-110 transition-transform"
+                        style={{ color: social.color }}
+                      >
+                        {social.icon}
+                      </span>
+                      <span className="text-[10px] font-bold text-zinc-400 group-hover:text-white uppercase tracking-wider transition-colors">
+                        {social.name}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom copyright statement */}
+            <div className="border-t border-zinc-800/80 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+              <span className="text-[10px] font-medium text-zinc-600 uppercase tracking-widest">
+                © {new Date().getFullYear()} FINVORA / FMVONG. ALL RIGHT
+                RESERVED.
+              </span>
+              <span className="text-[10px] font-medium text-zinc-600 uppercase tracking-widest flex items-center gap-2">
+                <Globe size={10} className="text-zinc-600" /> MULTI-CHAIN
+                COMPATIBLE EVM
+              </span>
             </div>
           </div>
         </footer>
