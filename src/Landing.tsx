@@ -56,7 +56,7 @@ import {
 // Adjust this path to match your project structure
 import logoImg from "./assets/logo1.png";
 import NavImg from "./assets/logo.png";
-import { BsInstagram, BsYoutube } from "react-icons/bs";
+import { BsInstagram, BsTwitterX, BsYoutube } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa";
 
 // ═══════════════ UTILITY COMPONENTS ═══════════════
@@ -520,6 +520,14 @@ const SOCIAL_LINKS = [
     color: "#ff0000",
     desc: "Watch guides & explainers",
   },
+
+  {
+    name: "X.com",
+    url: "https://x.com/finvora09b?s=11",
+    icon: <BsTwitterX size={20} />,
+    color: "#1085e6",
+    desc: "Watch guides & explainers",
+  },
 ];
 
 // ═══════════════ MAIN LANDING COMPONENT ═══════════════
@@ -613,16 +621,19 @@ const Landing: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2 sm:gap-3">
-              <button
+              <a
+                href="https://dapp.finvora.live/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="brutal-btn flex items-center gap-1 sm:gap-2 bg-fuchsia-500 text-[#0f1115] font-bold text-[10px] sm:text-xs uppercase tracking-widest px-3 py-2.5 sm:px-5 sm:py-3 rounded-xl border-2 border-fuchsia-300"
-                style={{ "--btn-shadow": "#a21caf" } as React.CSSProperties}
+                style={{ ["--btn-shadow" as any]: "#a21caf" }}
               >
                 Launch App{" "}
                 <ArrowUpRight
                   className="w-3 h-3 sm:w-4 sm:h-4"
                   strokeWidth={3}
                 />
-              </button>
+              </a>
               <button
                 className="xl:hidden p-2 sm:p-3 rounded-xl bg-[#1a1d24] border-2 border-fuchsia-500 shadow-[3px_3px_0_#d946ef] text-fuchsia-400"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
